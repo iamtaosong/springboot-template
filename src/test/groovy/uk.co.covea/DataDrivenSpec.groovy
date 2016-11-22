@@ -23,11 +23,4 @@ class DataDrivenSpec extends Specification {
         }
     }
 
-
-    def testPassword(){
-
-
-
-
-    }
 }
