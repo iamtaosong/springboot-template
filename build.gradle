@@ -1,0 +1,56 @@
+group 'uk.co.covea'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE")
+    }
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+def versions = [
+        spock:      '1.1-groovy-2.4-rc-3',
+        groovy:   '2.4.7',
+        junit:    '4.11',
+//        grava:'19.0',
+//        slf4j:'1.7.21',
+//        jukito:'1.4.1',
+//        guice:'3.0',
+//        mockito:'1.10.19',
+//        camel:      '2.17.3',
+//        wiremock: '1.56'
+]
+
+dependencies {
+
+    //    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
+    compile group: 'org.spockframework', name: 'spock-core', version: "${versions.spock}"
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.hateoas:spring-hateoas")
+
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile group: 'org.codehaus.groovy', name: 'groovy-all', version: "${versions.groovy}"
+    testCompile(group: 'com.github.tomakehurst', name: 'wiremock', version:'1.56', classifier:'standalone') {
+        exclude(module: 'guava')
+        exclude(module: 'jetty')
+    }
+
+
+
+}
